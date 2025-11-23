@@ -186,11 +186,9 @@ for key, value in product.items():
 # ---------------------------------------
 # Save to database
 # ---------------------------------------
-try:
-    price_float = float(product["price_use"])
-except Exception:
-    print("Warning: Could not convert price to float, setting 0.0")
-    price_float = 0.0
+
+
+product['price_action'] = None
 
 # save to db
 try:
@@ -200,8 +198,8 @@ try:
         memory_volume = product['memory_volume'],
         price_use = product['price_use'],
         price_action = product['price_action'],
-        pic_links = product['picture_urls'],
-        product_code = product["product_code"],
+        pic_links = product["pic_links"],
+        product_code = product["code"],
         review_count = product['review_count'],
         series = product['series'],
         display_size = product['display_size'],
