@@ -69,12 +69,34 @@ for script in scripts:
 if product_data:
     try:
         product["full_name"] = product_data.get("name", "")
-        product["pic_links"] = product_data.get("image", "")
-        product["code"] = product_data.get("sku", "")
-        product["price_use"] = product_data.get("offers", {}).get("price", "")
-        product["review_count"] = product_data.get("aggregateRating", {}).get("reviewCount", 0)
     except Exception as e:
-        print(f"Error extracting JSON-LD product data: {e}")
+        print(f"Error extracting product 'full-name': {e}")
+        product["full_name"] = None
+
+    try:
+        product["pic_links"] = product_data.get("image", "")
+    except Exception as e:
+        print(f"Error extracting product 'pic_links': {e}")
+        product["pic_links"] = None
+
+    try:
+        product["code"] = product_data.get("sku", "")
+    except Exception as e:
+        print(f"Error extracting product 'code': {e}")
+        product["code"] = None
+
+    try:
+        product["price_use"] = product_data.get("offers", {}).get("price", "")
+    except:
+        print(f"Error extracting product 'price_use': {e}")
+        product["price_use"] = None
+        
+    try:
+        product["review_count"] = product_data.get("aggregateRating", {}).get("reviewCount", 0)
+    except:
+        print(f"Error extracting product 'review_count': {e}")
+        product["review_count"] = None
+
 else:
     print("Product JSON-LD not found")
 
